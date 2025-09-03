@@ -41,7 +41,26 @@ const StyledBtn = styled.button`
 `;
 
 function ProductCard({ id, title, price, category, image }) {
-  const addToCart = useOutletContext();
+  const [cart, setCart] = useOutletContext();
+
+  function addToCart(prod) {
+    const prevCart = [...cart];
+    let isProdInCart = false;
+
+    prevCart.forEach((item) => {
+      if (item.id === prod.id) {
+        isProdInCart = true;
+        item.quantity += 1;
+        return;
+      }
+    });
+
+    if (isProdInCart) {
+      setCart([...prevCart]);
+    } else {
+      setCart([...cart, { ...prod, quantity: 1 }]);
+    }
+  }
 
   return (
     <Card>

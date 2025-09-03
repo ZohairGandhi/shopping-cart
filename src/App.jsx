@@ -53,25 +53,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const cartSize = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  function addToCart(prod) {
-    const prevCart = [...cart];
-    let isProdInCart = false;
-
-    prevCart.forEach((item) => {
-      if (item.id === prod.id) {
-        isProdInCart = true;
-        item.quantity += 1;
-        return;
-      }
-    });
-
-    if (isProdInCart) {
-      setCart([...prevCart]);
-    } else {
-      setCart([...cart, { ...prod, quantity: 1 }]);
-    }
-  }
-
   return (
     <>
       <StyledHeader>
@@ -85,7 +66,7 @@ function App() {
         <CartIcon cartSize={cartSize} />
       </StyledHeader>
 
-      <Outlet context={addToCart} />
+      <Outlet context={[cart, setCart]} />
 
       <StyledFooter>
         <p>Copyright (c) 2025 Zohair Gandhi. All Rights Reserved.</p>
