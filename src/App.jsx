@@ -2,6 +2,8 @@ import styled from "styled-components";
 import "./App.css";
 import { Link, Outlet } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import CartIcon from "./CartIcon";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -48,6 +50,28 @@ const StyledFooter = styled.footer`
 `;
 
 function App() {
+  const [cart, setCart] = useState([]);
+  const cartSize = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  function addToCart(prod) {
+    const prevCart = [...cart];
+    let isProdInCart = false;
+
+    prevCart.forEach((item) => {
+      if (item.id === prod.id) {
+        isProdInCart = true;
+        item.quantity += 1;
+        return;
+      }
+    });
+
+    if (isProdInCart) {
+      setCart([...prevCart]);
+    } else {
+      setCart([...cart, { ...prod, quantity: 1 }]);
+    }
+  }
+
   return (
     <>
       <StyledHeader>
@@ -58,12 +82,10 @@ function App() {
           <StyledLink to="shop">Shop</StyledLink>
         </StyledNav>
 
-        <StyledButton>
-          <ShoppingCart />
-        </StyledButton>
+        <CartIcon cartSize={cartSize} />
       </StyledHeader>
 
-      <Outlet />
+      <Outlet context={addToCart} />
 
       <StyledFooter>
         <p>Copyright (c) 2025 Zohair Gandhi. All Rights Reserved.</p>

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -6,10 +7,9 @@ const Card = styled.div`
   flex-direction: column;
   gap: 8px;
   transition: transform 250ms ease-in-out;
-  cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -26,7 +26,23 @@ const StyledPara = styled.p`
   font-weight: bold;
 `;
 
-function ProductCard({ title, price, category, image }) {
+const StyledBtn = styled.button`
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: auto;
+
+  &:hover {
+    opacity: 75%;
+  }
+`;
+
+function ProductCard({ id, title, price, category, image }) {
+  const addToCart = useOutletContext();
+
   return (
     <Card>
       <ProdImg $image={image} />
@@ -38,6 +54,12 @@ function ProductCard({ title, price, category, image }) {
           .join(" ")}
       </p>
       <StyledPara>{"$" + price}</StyledPara>
+      <StyledBtn
+        type="button"
+        onClick={() => addToCart({ id, title, price, category, image })}
+      >
+        Add to Cart
+      </StyledBtn>
     </Card>
   );
 }

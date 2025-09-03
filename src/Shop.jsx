@@ -10,6 +10,13 @@ const ProductsGrid = styled.div`
   padding: 0 15%;
 `;
 
+const Message = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 function Shop() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -29,11 +36,19 @@ function Shop() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Message>
+        <p>Loading...</p>
+      </Message>
+    );
   }
 
   if (error) {
-    return <p>Network error was enountered</p>;
+    return (
+      <Message>
+        <p>Network error was enountered</p>
+      </Message>
+    );
   }
 
   return (
@@ -41,6 +56,7 @@ function Shop() {
       {products.map((prod) => (
         <ProductCard
           key={prod.id}
+          id={prod.id}
           title={prod.title}
           price={prod.price}
           category={prod.category}
