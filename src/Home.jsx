@@ -11,6 +11,12 @@ const MainContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 32px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 32px;
+  }
 `;
 
 const MainTextContainer = styled.div`
@@ -22,6 +28,12 @@ const MainTextContainer = styled.div`
   gap: 32px;
   text-align: center;
   width: min-content;
+
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    gap: 16px;
+    flex: 0;
+  }
 `;
 
 const LogoText = styled.h1`
@@ -37,7 +49,12 @@ const MainPara = styled.p`
 
 const MainImgDiv = styled.div`
   position: relative;
-  width: 60%;
+  min-width: 60%;
+  max-width: 60%;
+
+  @media screen and (max-width: 600px) {
+    min-width: 100%;
+  }
 `;
 
 const ImgAttrr = styled.a`

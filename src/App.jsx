@@ -11,6 +11,10 @@ const StyledHeader = styled.header`
   align-items: baseline;
   padding: 8px 32px;
   margin-bottom: 8px;
+
+  @media screen and (max-width: 600px) {
+    align-items: center;
+  }
 `;
 
 const LogoText = styled.h1`
@@ -21,6 +25,11 @@ const LogoText = styled.h1`
 const StyledNav = styled.nav`
   display: flex;
   gap: 64px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 const StyledLink = styled(Link)`

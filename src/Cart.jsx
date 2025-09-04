@@ -7,11 +7,21 @@ const Container = styled.div`
   display: flex;
   gap: 16px;
   margin: 32px 15% 0 15%;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    margin: 16px;
+  }
 `;
 
 const StyledDiv = styled.div`
   width: 65%;
   max-height: 500px;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    max-height: 100%;
+  }
 `;
 
 const CartItems = styled.div`
