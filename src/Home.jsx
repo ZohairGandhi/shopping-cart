@@ -2,7 +2,7 @@ import styled from "styled-components";
 import homeImage from "./assets/pexels-bohlemedia-1884581.jpg";
 
 const MainImg = styled.img`
-  width: 60%;
+  width: 100%;
 `;
 
 const MainContainer = styled.div`
@@ -35,6 +35,24 @@ const MainPara = styled.p`
   width: 40ch;
 `;
 
+const MainImgDiv = styled.div`
+  position: relative;
+  width: 60%;
+`;
+
+const ImgAttrr = styled.a`
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 function Home() {
   return (
     <MainContainer>
@@ -52,7 +70,12 @@ function Home() {
         </MainPara>
       </MainTextContainer>
 
-      <MainImg src={homeImage} alt="" />
+      <MainImgDiv>
+        <MainImg src={homeImage} alt="" />
+        <ImgAttrr href="https://www.pexels.com/photo/grayscale-photography-of-assorted-apparels-on-shelf-rack-1884581/">
+          Photo by Tembela Bohle
+        </ImgAttrr>
+      </MainImgDiv>
     </MainContainer>
   );
 }
