@@ -1,1 +1,7 @@
+.github-logo {
+  transition: transform 250ms ease-in-out;
+}
 
+.github-logo:hover {
+  transform: scale(1.25);
+}
