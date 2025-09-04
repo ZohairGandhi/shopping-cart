@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
-import { Plus, Minus } from "lucide-react";
+import CartItem from "./CartItem";
 
 const Container = styled.div`
   flex: 1;
@@ -20,52 +20,6 @@ const CartItems = styled.div`
   gap: 32px;
   overflow-y: auto;
   margin-top: 16px;
-`;
-
-const ProductItem = styled.div`
-  display: flex;
-  gap: 16px;
-`;
-
-const ProdImg = styled.div`
-  background-image: url(${(props) => props.$image});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #e5e4e2;
-  width: 128px;
-  height: 128px;
-`;
-
-const StyledPara = styled.p`
-  font-weight: bold;
-`;
-
-const ProdQtyDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-`;
-
-const ProdQtyBtn = styled.button`
-  appearance: none;
-  border: none;
-  border-radius: 8px;
-  padding: 2px;
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0.75;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
-
-const ProdDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 `;
 
 const SummarySec = styled.div`
@@ -108,71 +62,28 @@ const CheckoutBtn = styled.button`
 `;
 
 function Cart() {
-  const [cart, setCart] = useOutletContext();
+  const [cart, _] = useOutletContext();
   const subTotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
-
-  function incQty(id) {
-    setCart(
-      cart.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-
-        return item;
-      }),
-    );
-  }
-
-  function decQty(id) {
-    const newCart = cart.map((item) => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-
-      return item;
-    });
-
-    setCart(newCart.filter((item) => item.quantity > 0));
-  }
 
   return (
     <Container>
       <StyledDiv>
         <h2>Your Stuff</h2>
         <CartItems>
-          {cart.map((item) => {
-            return (
-              <ProductItem key={item.id}>
-                <ProdImg $image={item.image} />
-
-                <ProdDetails>
-                  <div>
-                    <StyledPara>{item.title}</StyledPara>
-                    <p>
-                      {item.category
-                        .split(" ")
-                        .map((word) => word[0].toUpperCase() + word.slice(1))
-                        .join(" ")}
-                    </p>
-                    <StyledPara>{"$" + item.price}</StyledPara>
-                  </div>
-
-                  <ProdQtyDiv>
-                    <ProdQtyBtn type="button" onClick={() => decQty(item.id)}>
-                      <Minus height="16px" />
-                    </ProdQtyBtn>
-                    <p>{item.quantity}</p>
-                    <ProdQtyBtn type="button" onClick={() => incQty(item.id)}>
-                      <Plus height="16px" />
-                    </ProdQtyBtn>
-                  </ProdQtyDiv>
-                </ProdDetails>
-              </ProductItem>
-            );
-          })}
+          {cart.map((item) => (
+            <CartItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              price={item.price}
+              category={item.category}
+              image={item.image}
+              quantity={item.quantity}
+            />
+          ))}
         </CartItems>
       </StyledDiv>
 
