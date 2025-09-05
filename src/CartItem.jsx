@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Plus, Minus } from "lucide-react";
 import { useOutletContext } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
   display: flex;
@@ -108,5 +109,14 @@ function CartItem({ id, title, price, category, image, quantity }) {
     </Container>
   );
 }
+
+CartItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
 
 export default CartItem;

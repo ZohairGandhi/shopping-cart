@@ -84,6 +84,7 @@ function ProductCard({ id, title, price, category, image }) {
 }
 
 ProductCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired,

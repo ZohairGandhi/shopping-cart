@@ -1,6 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled(Link)`
   position: relative;
@@ -32,5 +33,9 @@ function CartIcon({ cartSize }) {
     </Container>
   );
 }
+
+CartIcon.propTypes = {
+  cartSize: PropTypes.number.isRequired,
+};
 
 export default CartIcon;
