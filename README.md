@@ -2,7 +2,7 @@
 
 A simple single-page shopping cart application built with React. Users can
 browse products, add them to a cart, and navigate between the Home, Shop, and
-Cart pages, all within a smooth client-side experience.
+Cart pages, all within a smooth client-side rendering using React Router.
 
 ![Screenshot of the home page](./images/home-page.png)
 ![Screenshot of the shop page](./images/shop-page.png)
@@ -10,11 +10,13 @@ Cart pages, all within a smooth client-side experience.
 
 ## Built With
 
-- Vite
-- React
-- React Router
-- styled-components
-- FakeStore API
+- Vite - For fast development and building the application
+- React - For building UI
+- React Router - For client-side routing, enabling navigation between pages
+  without full page reloads
+- styled-components - For styling React components
+- FakeStore API - To simulate product data
+- PropTypes - For type checking
 
 ## Live Demo
 
