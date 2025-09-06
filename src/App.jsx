@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "./App.css";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
-import CartIcon from "./CartIcon";
+import CartIcon from "./components/CartIcon";
 
 const StyledHeader = styled.header`
   display: flex;

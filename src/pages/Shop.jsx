@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/ProductCard";
 
 const ProductsGrid = styled.div`
   display: grid;

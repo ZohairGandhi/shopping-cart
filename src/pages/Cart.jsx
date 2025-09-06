@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
-import CartItem from "./CartItem";
+import CartItem from "../components//CartItem";
 
 const Container = styled.div`
   flex: 1;

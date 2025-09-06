@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import homeImage from "./assets/pexels-bohlemedia-1884581.jpg";
+import homeImage from "../assets/pexels-bohlemedia-1884581.jpg";
 
 const MainImg = styled.img`
   width: 100%;
