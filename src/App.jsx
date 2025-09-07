@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import "./App.css";
 import { Link, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useReducer } from "react";
 import CartIcon from "./components/CartIcon";
+import cartReducer from "./components/cartReducer";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -50,7 +51,7 @@ const StyledFooter = styled.footer`
 `;
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, dispatch] = useReducer(cartReducer, []);
   const cartSize = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -66,7 +67,7 @@ function App() {
         <CartIcon cartSize={cartSize} />
       </StyledHeader>
 
-      <Outlet context={[cart, setCart]} />
+      <Outlet context={[cart, dispatch]} />
 
       <StyledFooter>
         <p>Copyright (c) 2025 Zohair Gandhi. All Rights Reserved.</p>

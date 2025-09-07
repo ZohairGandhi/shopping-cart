@@ -50,31 +50,7 @@ const ProdDetails = styled.div`
 `;
 
 function CartItem({ id, title, price, category, image, quantity }) {
-  const [cart, setCart] = useOutletContext();
-
-  function incQty(id) {
-    setCart(
-      cart.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-
-        return item;
-      }),
-    );
-  }
-
-  function decQty(id) {
-    const newCart = cart.map((item) => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-
-      return item;
-    });
-
-    setCart(newCart.filter((item) => item.quantity > 0));
-  }
+  const [_, dispatch] = useOutletContext();
 
   return (
     <Container>
@@ -95,13 +71,19 @@ function CartItem({ id, title, price, category, image, quantity }) {
         </div>
 
         <ProdQtyDiv>
-          <ProdQtyBtn type="button" onClick={() => decQty(id)}>
+          <ProdQtyBtn
+            type="button"
+            onClick={() => dispatch({ type: "decrement_quantity", id: id })}
+          >
             <Minus height="16px" />
           </ProdQtyBtn>
 
           <p>{quantity}</p>
 
-          <ProdQtyBtn type="button" onClick={() => incQty(id)}>
+          <ProdQtyBtn
+            type="button"
+            onClick={() => dispatch({ type: "increment_quantity", id: id })}
+          >
             <Plus height="16px" />
           </ProdQtyBtn>
         </ProdQtyDiv>

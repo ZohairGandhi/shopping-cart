@@ -41,26 +41,7 @@ const StyledBtn = styled.button`
 `;
 
 function ProductCard({ id, title, price, category, image }) {
-  const [cart, setCart] = useOutletContext();
-
-  function addToCart(prod) {
-    const prevCart = [...cart];
-    let isProdInCart = false;
-
-    prevCart.forEach((item) => {
-      if (item.id === prod.id) {
-        isProdInCart = true;
-        item.quantity += 1;
-        return;
-      }
-    });
-
-    if (isProdInCart) {
-      setCart([...prevCart]);
-    } else {
-      setCart([...cart, { ...prod, quantity: 1 }]);
-    }
-  }
+  const [_, dispatch] = useOutletContext();
 
   return (
     <Card>
@@ -75,7 +56,12 @@ function ProductCard({ id, title, price, category, image }) {
       <StyledPara>{"$" + price}</StyledPara>
       <StyledBtn
         type="button"
-        onClick={() => addToCart({ id, title, price, category, image })}
+        onClick={() =>
+          dispatch({
+            type: "add_to_cart",
+            prod: { id, title, price, category, image },
+          })
+        }
       >
         Add to Cart
       </StyledBtn>
